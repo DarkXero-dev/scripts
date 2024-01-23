@@ -73,13 +73,9 @@ case $choice in
 
 
     * )
-     if [ -z "$choice" ]; then
-            echo "No input provided. Exiting."
-        else
-            echo "You entered: $choice"
-            # Add your logic here based on the entered value
-        fi
-
+      echo "#################################"
+      echo "    Choose the correct number    "
+      echo "#################################"
       ;;
 
  esac
