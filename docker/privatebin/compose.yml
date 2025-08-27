@@ -1,0 +1,15 @@
+services:
+  privatebin:
+    image: privatebin/nginx-fpm-alpine
+    container_name: privatebin
+    restart: always
+    read_only: true
+    user: 1000:1000
+    ports:
+      - 8082:8080
+    volumes:
+      - /home/xero/docker/privatebin/data:/srv/data
+      - /home/xero/docker/privatebin/conf.php:/srv/cfg/conf.php
+    environment:
+      PUID: 1000
+      PGID: 1000
