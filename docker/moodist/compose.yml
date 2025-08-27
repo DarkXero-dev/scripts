@@ -1,0 +1,10 @@
+services:
+  moodist:
+    image: ghcr.io/remvze/moodist
+    container_name: moodist
+    logging:
+      options:
+        max-size: 1g
+    restart: always
+    ports:
+      - 8087:8080
