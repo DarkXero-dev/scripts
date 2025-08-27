@@ -1,0 +1,8 @@
+services: 
+  cloudflared: 
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflare-tunnel 
+    restart: always
+    command: tunnel run 
+    environment: 
+      - TUNNEL_TOKEN={token}
