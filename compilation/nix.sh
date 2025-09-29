@@ -1,4 +1,3 @@
-  GNU nano 8.6                                     nix.sh
 #!/usr/bin/env bash
 
 set -e
@@ -36,9 +35,8 @@ if command -v zsh >/dev/null 2>&1; then
     echo '. /etc/profile.d/nix.sh' | sudo tee -a /etc/zsh/zprofile
   fi
 fi
-
+echo
 echo "Shell integration for Nix is configured for Bash and Zsh (if installed)."
-
 sleep 3
 
 # Add aliases
