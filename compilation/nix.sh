@@ -30,8 +30,18 @@ if ! grep -qF '. /etc/profile.d/nix.sh' /etc/profile; then
   echo '. /etc/profile.d/nix.sh' | sudo tee -a /etc/profile
 fi
 
-# Add aliases
+# Check if Zsh is installed and configure /etc/zsh/zprofile accordingly
+if command -v zsh >/dev/null 2>&1; then
+  if [ -f /etc/zsh/zprofile ] && ! grep -qF '. /etc/profile.d/nix.sh' /etc/zsh/zprofile; then
+    echo '. /etc/profile.d/nix.sh' | sudo tee -a /etc/zsh/zprofile
+  fi
+fi
 
+echo "Shell integration for Nix is configured for Bash and Zsh (if installed)."
+
+sleep 3
+
+# Add aliases
 for rc in ~/.bashrc ~/.zshrc; do
   if [ -f "$rc" ]; then
     {
@@ -43,6 +53,7 @@ for rc in ~/.bashrc ~/.zshrc; do
   fi
 done
 
-echo "System-wide Nix installed with flakes and nix-command enabled."
-echo "You may need to log out and back in (or reboot) for shell integration to take effect."
+echo "Nix Package Maneger installed with nix-command enabled."
+echo
+echo "You need to log out and back in (or reboot) for shell integration to take effect."
 sleep 3
