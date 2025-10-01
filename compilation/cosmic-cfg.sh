@@ -85,7 +85,7 @@ sudo pacman -S --noconfirm --needed \
 setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
-  oh-my-posh-bin cosmic-applet-music-player-git cosmic-applet-arch cosmic-ext-tweaks \
+  oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks \
   system76-power cosmic-ext-applet-caffeine-git cosmic-ext-forecast-git xdg-terminal-exec-git pacseek-bin
 
 # Step 4: Enable services
