@@ -7,7 +7,7 @@ echo "                   XeroCosmic Install Script                   "
 echo "       This will install XeroLinux Cosmic Configuration        "
 echo "==============================================================="
 echo
-read -rp "Proceed with installation? [y/N]: " proceed
+read -rp "Proceed with installation ? (Might take a while) [y/N]: " proceed
 if [[ ! "$proceed" =~ ^[Yy]$ ]]; then
   echo "Aborted."
   exit 1
@@ -23,7 +23,7 @@ enable_multilib() {
     sudo sed -i '/#\[multilib\]/,+1s/^#//' /etc/pacman.conf
   fi
 }
-
+echo
 # Add XeroLinux repo if missing
 add_xerolinux_repo() {
   if grep -Pq '^\[xerolinux\]' /etc/pacman.conf; then
@@ -70,12 +70,13 @@ setup_aur_helper() {
 enable_multilib
 add_xerolinux_repo
 sudo pacman -Syy
-
+echo
 # Step 2: Install pacman packages
 echo "Installing official packages..."
+echo
 sudo pacman -S --noconfirm --needed \
-  rust qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
-  gnome-themes-extra gtk-engine-murrine ttf-fira-code \
+  cosmic-desktop-config firefox rust qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
+  gnome-themes-extra gtk-engine-murrine ttf-fira-code nordic-wallpapers \
   otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git \
   ttf-ubuntu-font-family awesome-terminal-fonts ttf-jetbrains-mono-nerd \
   adobe-source-sans-pro-fonts bat bat-extras jq figlet bash-completion \
@@ -85,13 +86,12 @@ sudo pacman -S --noconfirm --needed \
 setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
-  oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks \
-  system76-power cosmic-ext-applet-caffeine-git cosmic-ext-forecast-git xdg-terminal-exec-git pacseek-bin
+  oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks cosmic-ext-forecast-git \
+  system76-power cosmic-ext-applet-caffeine-git xdg-terminal-exec-git pacseek-bin
 
 # Step 4: Enable services
 echo "Enabling services..."
-sudo systemctl enable sshd
-sudo systemctl enable com.system76.PowerDaemon
+sudo systemctl enable sshd com.system76.PowerDaemon
 
 # Step 5: Copy /etc/skel to home
 echo "Copying /etc/skel to user home..."
@@ -106,5 +106,6 @@ if [[ "$reboot_confirm" =~ ^[Yy]$ ]]; then
   echo "Rebooting..."
   sudo reboot
 else
+  echo
   echo "Reboot later to apply changes."
 fi
