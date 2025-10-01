@@ -2,10 +2,10 @@
 
 set -euo pipefail
 
-echo "=========================================================="
-echo "                 XeroCosmic Install Script                "
-echo "       This will install XeroLinux version of Cosmic      "
-echo "=========================================================="
+echo "==============================================================="
+echo "                   XeroCosmic Install Script                   "
+echo "       This will install XeroLinux Cosmic Configuration        "
+echo "==============================================================="
 echo
 read -rp "Proceed with installation? [y/N]: " proceed
 if [[ ! "$proceed" =~ ^[Yy]$ ]]; then
