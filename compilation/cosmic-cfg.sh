@@ -33,7 +33,7 @@ add_xerolinux_repo() {
     echo -e "\n[xerolinux]\nSigLevel = Optional TrustAll\nServer = https://repos.xerolinux.xyz/\$repo/\$arch" | sudo tee -a /etc/pacman.conf >/dev/null
   fi
 }
-
+echo
 # Detect or install AUR helper
 setup_aur_helper() {
   if command -v paru >/dev/null; then
@@ -42,7 +42,9 @@ setup_aur_helper() {
     AUR_HELPER="yay"
   else
     echo "No AUR helper found."
+    echo
     echo "Choose AUR helper to install:"
+    echo
     select choice in "paru-bin" "yay-bin"; do
       case $choice in
         paru-bin|yay-bin)
