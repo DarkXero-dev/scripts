@@ -92,7 +92,12 @@ $AUR_HELPER -S --noconfirm --needed \
 echo "Enabling services..."
 sudo systemctl enable sshd com.system76.PowerDaemon
 
-# Step 5: Copy /etc/skel to home
+# Step 5: Copy Wallpaper
+sudo mkdir -p /usr/share/xero-gfx
+cd /usr/share/xero-gfx && sudo wget https://raw.githubusercontent.com/DarkXero-dev/Storage/refs/heads/main/Archived/CosmicX/airootfs/usr/share/xero-gfx/Xero-Purple.jpg
+cd
+
+# Step 6: Copy /etc/skel to home
 echo "Copying /etc/skel to user home..."
 USER_HOME="/home/$USER"
 cp -r /etc/skel/. "$USER_HOME/"
