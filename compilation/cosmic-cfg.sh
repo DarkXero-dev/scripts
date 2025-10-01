@@ -96,8 +96,7 @@ sudo systemctl enable com.system76.PowerDaemon
 # Step 5: Copy /etc/skel to home
 echo "Copying /etc/skel to user home..."
 USER_HOME="/home/$USER"
-sudo cp -r /etc/skel/. "$USER_HOME/"
-sudo chown -R "$USER:$USER" "$USER_HOME"
+cp -r /etc/skel/. "$USER_HOME/"
 
 echo
 echo "Installation complete."
