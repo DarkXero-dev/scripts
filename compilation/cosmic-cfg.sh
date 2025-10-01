@@ -72,7 +72,7 @@ sudo pacman -Syy
 # Step 2: Install pacman packages
 echo "Installing official packages..."
 sudo pacman -S --noconfirm --needed \
-  pacseek system76-power qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
+  pacseek rust system76-power qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
   oh-my-posh-bin gnome-themes-extra gtk-engine-murrine ttf-fira-code \
   otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git \
   ttf-ubuntu-font-family awesome-terminal-fonts ttf-jetbrains-mono-nerd \
