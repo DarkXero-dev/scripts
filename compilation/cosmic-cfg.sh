@@ -72,8 +72,8 @@ sudo pacman -Syy
 # Step 2: Install pacman packages
 echo "Installing official packages..."
 sudo pacman -S --noconfirm --needed \
-  pacseek rust system76-power qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
-  oh-my-posh-bin gnome-themes-extra gtk-engine-murrine ttf-fira-code \
+  rust qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
+  gnome-themes-extra gtk-engine-murrine ttf-fira-code \
   otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git \
   ttf-ubuntu-font-family awesome-terminal-fonts ttf-jetbrains-mono-nerd \
   adobe-source-sans-pro-fonts bat bat-extras jq figlet bash-completion \
@@ -83,8 +83,8 @@ sudo pacman -S --noconfirm --needed \
 setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
-  cosmic-applet-music-player-git cosmic-applet-arch cosmic-ext-tweaks \
-  cosmic-ext-applet-caffeine-git cosmic-ext-forecast-git xdg-terminal-exec-git
+  oh-my-posh-bin cosmic-applet-music-player-git cosmic-applet-arch cosmic-ext-tweaks \
+  system76-power cosmic-ext-applet-caffeine-git cosmic-ext-forecast-git xdg-terminal-exec-git pacseek-bin
 
 # Step 4: Enable services
 echo "Enabling services..."
