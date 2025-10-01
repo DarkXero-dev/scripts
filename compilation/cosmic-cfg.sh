@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-
-set -euo pipefail
 clear
+set -euo pipefail
 echo "==============================================================="
 echo "                   XeroCosmic Install Script                   "
 echo "       This will install XeroLinux Cosmic Configuration        "
