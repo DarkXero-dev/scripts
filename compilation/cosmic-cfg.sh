@@ -76,17 +76,17 @@ echo
 sudo pacman -S --noconfirm --needed \
   cosmic-desktop-config firefox rust qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
   gnome-themes-extra gtk-engine-murrine ttf-fira-code nordic-wallpapers \
-  otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git \
+  otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git xero-fix-scripts \
   ttf-ubuntu-font-family awesome-terminal-fonts ttf-jetbrains-mono-nerd \
   adobe-source-sans-pro-fonts bat bat-extras jq figlet bash-completion \
-  brightnessctl acpi upower gtk-update-icon-cache
+  brightnessctl acpi upower gtk-update-icon-cache cosmic-ext-applet-caffeine-git
 
 # Step 3: Install AUR packages
 setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
   oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks cosmic-ext-forecast-git \
-  system76-power cosmic-ext-applet-caffeine-git xdg-terminal-exec-git pacseek-bin
+  system76-power xdg-terminal-exec-git pacseek-bin
 
 # Step 4: Enable services
 echo "Enabling services..."
