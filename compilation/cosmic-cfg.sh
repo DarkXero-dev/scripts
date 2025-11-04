@@ -33,6 +33,29 @@ add_xerolinux_repo() {
   fi
 }
 echo
+# Function to add the Chaotic-AUR repository
+add_chaotic_aur() {
+    if ! grep -q "\[chaotic-aur\]" /etc/pacman.conf; then
+        echo
+        echo "Adding The Chaotic-AUR Repository..."
+        sleep 3
+        echo
+        sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+        sudo pacman-key --lsign-key 3056513887B78AEB
+        sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+        sudo pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+        echo -e '\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' | sudo tee -a /etc/pacman.conf
+        echo
+        echo "Chaotic-AUR Repository added!"
+        echo
+        sleep 3
+    else
+        echo "Chaotic-AUR Repository already added."
+        echo
+        sleep 3
+    fi
+}
+echo
 # Detect or install AUR helper
 setup_aur_helper() {
   if command -v paru >/dev/null; then
@@ -74,19 +97,19 @@ echo
 echo "Installing official packages..."
 echo
 sudo pacman -S --noconfirm --needed \
-  cosmic-desktop-config firefox rust qt6ct kvantum fastfetch gtk-engines adw-gtk-theme \
-  gnome-themes-extra gtk-engine-murrine ttf-fira-code nordic-wallpapers \
+  cosmic-desktop-config firefox rust qt6ct kvantum fastfetch adw-gtk-theme \
+  gnome-themes-extra ttf-fira-code nordic-wallpapers xero-hooks grub-hooks \
   otf-libertinus tex-gyre-fonts ttf-hack-nerd xero-fonts-git xero-fix-scripts \
   ttf-ubuntu-font-family awesome-terminal-fonts ttf-jetbrains-mono-nerd \
-  adobe-source-sans-pro-fonts bat bat-extras jq figlet bash-completion \
-  brightnessctl acpi upower gtk-update-icon-cache cosmic-ext-applet-caffeine-git
+  adobe-source-sans-pro-fonts bat bat-extras jq figlet bash-completion xero-fix-scripts \
+  brightnessctl acpi upower gtk-update-icon-cache 
 
 # Step 3: Install AUR packages
 setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
   oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks cosmic-ext-forecast-git \
-  system76-power xdg-terminal-exec-git pacseek-bin
+  system76-power xdg-terminal-exec-git pacseek-bin topgrade-bin cosmic-ext-applet-caffeine-git
 
 # Step 4: Enable services
 echo "Enabling services..."
