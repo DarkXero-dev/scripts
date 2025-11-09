@@ -91,6 +91,7 @@ setup_aur_helper() {
 # Step 1: Configure pacman
 enable_multilib
 add_xerolinux_repo
+add_chaotic_aur
 sudo pacman -Syy
 echo
 # Step 2: Install pacman packages
