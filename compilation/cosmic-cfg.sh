@@ -110,7 +110,7 @@ setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
   oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks cosmic-ext-forecast-git \
-  system76-power xdg-terminal-exec-git pacseek-bin topgrade-bin cosmic-ext-applet-caffeine-git
+  system76-power xdg-terminal-exec-git pacseek-bin topgrade cosmic-ext-applet-caffeine-git
 
 # Step 4: Enable services
 echo "Enabling services..."
