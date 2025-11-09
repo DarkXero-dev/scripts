@@ -58,25 +58,20 @@ add_chaotic_aur() {
 echo
 # Detect or install AUR helper
 setup_aur_helper() {
-  if command -v paru >/dev/null; then
+  if command -v paru >/dev/null 2>&1; then
     AUR_HELPER="paru"
-  elif command -v yay >/dev/null; then
+  elif command -v yay >/dev/null 2>&1; then
     AUR_HELPER="yay"
   else
     echo "No AUR helper found."
     echo
     echo "Choose AUR helper to install:"
     echo
-    select choice in "paru-bin" "yay-bin"; do
-      case $choice in
-        paru-bin|yay-bin)
-          temp_dir=$(mktemp -d)
-          git clone "https://aur.archlinux.org/$choice.git" "$temp_dir"
-          pushd "$temp_dir"
-          makepkg -si --noconfirm
-          popd
-          rm -rf "$temp_dir"
-          AUR_HELPER=${choice%%-bin}
+    select choice in "paru" "yay"; do
+      case "$choice" in
+        paru|yay)
+          sudo pacman -Syy "$choice"
+          AUR_HELPER="$choice"
           break
           ;;
         *)
@@ -85,6 +80,7 @@ setup_aur_helper() {
       esac
     done
   fi
+  echo
   echo "Using AUR helper: $AUR_HELPER"
 }
 
@@ -125,6 +121,31 @@ cd
 echo "Copying /etc/skel to user home..."
 USER_HOME="/home/$USER"
 cp -r /etc/skel/. "$USER_HOME/"
+
+# Step 7: OhMyPosh Setup
+echo "Injecting OMP to .bashrc"
+
+# Define the lines to be added
+line1='# Oh-My-Posh Config'
+line2='eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/distrous-xero-linux.omp.json)"'
+
+# Define the .bashrc file
+bashrc_file="$HOME/.bashrc"
+
+# Function to add lines if not already present
+add_lines() {
+  if ! grep -qxF "$line1" "$bashrc_file"; then
+    echo "" >> "$bashrc_file" # Add an empty line before line1
+    echo "$line1" >> "$bashrc_file"
+  fi
+  if ! grep -qxF "$line2" "$bashrc_file"; then
+    echo "$line2" >> "$bashrc_file"
+    echo "" >> "$bashrc_file" # Add an empty line after line2
+  fi
+}
+
+# Run the function to add lines
+add_lines
 
 echo
 echo "Installation complete."
