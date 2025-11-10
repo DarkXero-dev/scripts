@@ -106,7 +106,7 @@ setup_aur_helper
 echo "Installing AUR packages..."
 $AUR_HELPER -S --noconfirm --needed \
   oh-my-posh-bin cosmic-applet-arch cosmic-ext-tweaks cosmic-ext-forecast-git \
-  system76-power xdg-terminal-exec-git pacseek-bin topgrade cosmic-ext-applet-caffeine-git
+  system76-power xdg-terminal-exec-git pacseek topgrade cosmic-ext-applet-caffeine-git
 
 # Step 4: Enable services
 echo "Enabling services..."
@@ -127,7 +127,7 @@ echo "Injecting OMP to .bashrc"
 
 # Define the lines to be added
 line1='# Oh-My-Posh Config'
-line2='eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/distrous-xero-linux.omp.json)"'
+line2='eval "$(oh-my-posh init bash --config $HOME/.config/ohmyposh/xero.omp.json)"'
 
 # Define the .bashrc file
 bashrc_file="$HOME/.bashrc"
